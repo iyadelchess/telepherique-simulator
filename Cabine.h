@@ -25,7 +25,7 @@ class Cabine{
        bool  porteOuverte;
        Cabine();
 
-       void getPosition()const;
+       double getPosition()const;
        void accelerer();
        void arreter();
        void ralentir();
