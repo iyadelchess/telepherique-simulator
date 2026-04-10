@@ -3,7 +3,7 @@
 #include <string>
 using namespace std;
 
-Cabine::Cabine(string modele ) : modele(modele) {
+Cabine::Cabine(string modele) : modele(modele) {
     
     position = 0.0;
     vitesse = 0;
@@ -21,21 +21,38 @@ void Cabine::accelerer() {
 }
 
 void Cabine::ralentir(){
-    while (etat != ARRET)
-    {
-        vitesse *= 0.95;
-        position+=vitesse;
-        if (position<positionStation-0.05){
-            arreter();
-        }
+    vitesse *= 0.95;
+    position+=vitesse; 
+}
+
+void Cabine::freiner(){
+    if (vitesse>10){
+    vitesse *= 0.70;
+    position+=vitesse; 
     }
-    
-    
-    
+    else if (vitesse>4){
+        vitesse *= 0.35;
+        position+=vitesse; 
+    }
+    else{
+        vitesse *= 0.05;
+        position+=vitesse; 
+    }
 }
 
 double Cabine::getPosition()const{
     return this->position; 
 }
 
+void Cabine::arreter(){
+    freiner();
+    if (vitesse<0.1){
+    vitesse = 0;
+    etat=ARRET;
+               }
+}
 
+void Cabine::fermerPortes(){
+    portes = FERMES;
+    dureeDeViePortes-=1;
+}

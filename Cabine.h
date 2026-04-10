@@ -20,10 +20,12 @@ class Cabine{
        double position;
        double vitesse;
     public:
+       EtatCabine etat; 
        bool  estPropre;
-       const int capacité ; 
-       bool  porteOuverte;
-       Cabine();
+       const int capacité = 10 ; 
+       const int seuilAcceleration = 12;
+       
+       Cabine(const string modele);
 
        double getPosition()const;
        void accelerer();
