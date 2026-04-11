@@ -11,6 +11,7 @@ Cabine::Cabine(string modele) : modele(modele) {
     
 }
 void Cabine::accelerer() {
+    etat=EN_MOUVEMENT;
     position += vitesse;
     if (vitesse == 0){
         vitesse+= 1;
@@ -44,6 +45,10 @@ double Cabine::getPosition()const{
     return this->position; 
 }
 
+int Cabine::getNbPassagers()const{
+    return this->nombreDepassagers;
+}
+
 void Cabine::arreter(){
     freiner();
     if (vitesse<0.1){
@@ -53,6 +58,34 @@ void Cabine::arreter(){
 }
 
 void Cabine::fermerPortes(){
+    if(etat!=ARRET){
     portes = FERMES;
-    dureeDeViePortes-=1;
+    etatPortes-=0.1;
+    }
+    else{
+        throw invalid_argument("Les passagers sont entrain de monter dans la cabine");
+    }
+}
+
+void Cabine::ouvrirPortes(){
+    if (etat!=EN_MOUVEMENT){
+    portes = OUVERTES;
+    etatPortes-=0.1;
+    }
+    else{
+        throw invalid_argument("La cabine est en mouvement risque d'accident pour les passagers!");
+    }
+}
+
+void Cabine::allumerLumieres(){
+    lumiereEstAllume=true;
+    etatLumieres-=1;
+}
+
+void Cabine::ajouterPassagers(int passagers){
+        nombreDepassagers+=passagers;
+}
+
+double Cabine::getConditionCabine()const{
+   return (etatPortes + etatLumieres + niveauDeProprete + etatDesPlaces) / 4;
 }

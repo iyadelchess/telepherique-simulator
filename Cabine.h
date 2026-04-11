@@ -20,8 +20,13 @@ class Cabine{
        double position;
        double vitesse;
     public:
+       double niveauDeProprete;
+       double conditionCabine;
+       int dureeDeViePortes=50000;
+       Portes portes;
        EtatCabine etat; 
        bool  estPropre;
+       bool  lumiereEstAllume;
        const int capacité = 10 ; 
        const int seuilAcceleration = 12;
        
@@ -31,11 +36,10 @@ class Cabine{
        void accelerer();
        void arreter();
        void ralentir();
-       void nettoyer();
-       void declarerEnPanne();
+       void freiner();
        void fermerPortes();
        void ouvrirPortes();
-
+       void allumerLumieres();
 };
 
 
