@@ -19,20 +19,25 @@ class Cabine{
        string modele;
        double position;
        double vitesse;
+       int nombreDepassagers;
     public:
-       double niveauDeProprete;
+       double etatDesFreins=100;
+       double etatDesPlaces=100;
+       double niveauDeProprete=100;
        double conditionCabine;
-       int dureeDeViePortes=50000;
+       double etatPortes=100;
+       double etatLumieres=100;
        Portes portes;
        EtatCabine etat; 
        bool  estPropre;
        bool  lumiereEstAllume;
-       const int capacité = 10 ; 
+       const int capacité = 15 ; 
        const int seuilAcceleration = 12;
        
        Cabine(const string modele);
-
+       int getNbPassagers()const;
        double getPosition()const;
+       double getVitesse()const;
        void accelerer();
        void arreter();
        void ralentir();
@@ -40,6 +45,8 @@ class Cabine{
        void fermerPortes();
        void ouvrirPortes();
        void allumerLumieres();
+       void ajouterPassagers(int passagers);
+       double getConditionCabine()const;
 };
 
 

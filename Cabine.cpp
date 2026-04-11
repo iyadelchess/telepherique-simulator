@@ -5,23 +5,26 @@ using namespace std;
 
 Cabine::Cabine(string modele) : modele(modele) {
     
-    position = 0.0;
+    position = 0;
     vitesse = 0;
     estPropre = true;
     
 }
 void Cabine::accelerer() {
     etat=EN_MOUVEMENT;
-    position += vitesse;
     if (vitesse == 0){
         vitesse+= 1;
     } 
-    if (vitesse<seuilAcceleration){   
+    if (vitesse>=seuilAcceleration){   
     vitesse += vitesse * 0.18 ;
         }
+    position += vitesse;
 }
 
 void Cabine::ralentir(){
+    if (position==0){
+        throw invalid_argument("La machine n'est pas en mouvement");
+    }
     vitesse *= 0.95;
     position+=vitesse; 
 }
@@ -88,4 +91,7 @@ void Cabine::ajouterPassagers(int passagers){
 
 double Cabine::getConditionCabine()const{
    return (etatPortes + etatLumieres + niveauDeProprete + etatDesPlaces) / 4;
+}
+double Cabine::getVitesse()const{
+    return this->vitesse;
 }
