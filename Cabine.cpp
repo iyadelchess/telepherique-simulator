@@ -3,7 +3,7 @@
 #include <string>
 using namespace std;
 
-Cabine::Cabine(string modele) : modele(modele) {
+Cabine::Cabine(string numero) : numero(numero) {
     
     position = 0;
     vitesse = 0;
@@ -86,7 +86,19 @@ void Cabine::allumerLumieres(){
 }
 
 void Cabine::ajouterPassagers(int passagers){
-        nombreDepassagers+=passagers;
+    if(portes==OUVERTES){
+        nombreDepassagers+=passagers;}
+    else{
+        throw invalid_argument("impossible pour les passagers de rentrer à bord");
+    }
+}
+
+void Cabine::descendrePassagers(int passagers){
+    if(portes==OUVERTES){
+    nombreDepassagers-=passagers;}
+    else{
+        throw invalid_argument("impossible pour les passagers de sortir");
+    }
 }
 
 double Cabine::getConditionCabine()const{

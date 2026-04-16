@@ -16,7 +16,7 @@ enum Portes{
 class Cabine{
 
     private:
-       string modele;
+       string numero;
        double position;
        double vitesse;
        int nombreDepassagers;
@@ -27,14 +27,14 @@ class Cabine{
        double conditionCabine;
        double etatPortes=100;
        double etatLumieres=100;
-       Portes portes;
-       EtatCabine etat; 
+       Portes portes = FERMES;
+       EtatCabine etat = ARRET; 
        bool  estPropre;
        bool  lumiereEstAllume;
        const int capacité = 15 ; 
        const int seuilAcceleration = 12;
        
-       Cabine(const string modele);
+       Cabine(const string numero);
        int getNbPassagers()const;
        double getPosition()const;
        double getVitesse()const;
@@ -46,6 +46,7 @@ class Cabine{
        void ouvrirPortes();
        void allumerLumieres();
        void ajouterPassagers(int passagers);
+       void descendrePassagers(int passagers);
        double getConditionCabine()const;
 };
 
